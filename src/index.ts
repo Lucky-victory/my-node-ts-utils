@@ -13,27 +13,27 @@ export class MyUtils {
         return merge(obj, ...objs) as unknown as R;
     }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    static flatten<R>(arr: any): R[] {
-        arr = JSON.parse(JSON.stringify(arr));
+    static flatten<R=any>(arr: any): R[] {
+
         return flatten(arr);
     }
-    static omit<T extends object | object[]>(obj: T, remove: (keyof T)[]) {
-        obj = JSON.parse(JSON.stringify(obj));
+    static omit<T extends object | object[]>(obj: T, remove: (keyof T)[]|string[]) {
+    
         if (Array.isArray(obj)) {
             return obj.map((item) => {
-                return omit(item, remove);
+                return omit(item, remove as (keyof T)[]);
             });
         }
-        return omit(obj, remove);
+        return omit(obj, remove as (keyof T)[]);
     }
-    static pick<T extends object>(obj: T | T[], select: (keyof T)[]) {
-        obj = JSON.parse(JSON.stringify(obj));
+    static pick<T extends object>(obj: T | T[], select: (keyof T)[]|string[]) {
+        
         if (Array.isArray(obj)) {
             return obj.map((item) => {
-                return pick(item as T, select);
+                return pick(item as T, select as (keyof T)[]);
             });
         }
-        return pick(obj, select);
+        return pick(obj, select as (keyof T)[]);
     }
 
     /**

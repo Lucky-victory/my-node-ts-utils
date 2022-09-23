@@ -1,6 +1,6 @@
 {
   "name": "my-node-ts-utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "My commonly used utilities",
   "main": "./dist/index.js",
   "scripts": {
