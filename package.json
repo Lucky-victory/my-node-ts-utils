@@ -1,6 +1,6 @@
 {
   "name": "my-node-ts-utils",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "My commonly used utilities",
   "main": "./dist/index.js",
   "scripts": {
@@ -10,7 +10,9 @@
     "type": "git",
     "url": "git+https://github.com/Lucky-victory/my-node-ts-utils.git"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
