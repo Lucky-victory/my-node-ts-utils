@@ -10,10 +10,42 @@ export class MyUtils {
     return val && String(val).toLowerCase().trim();
   }
   static isEmpty(val: any) {
-    return (
-      val === "" || Object.keys(val)?.length === 0 || typeof val == "undefined"
-    );
+    let isEmpty: boolean=true;
+    switch (val) {
+      case (isEmpty = typeof val === "undefined"):
+        break;
+      case (isEmpty = MyUtils.isNull(val)):
+        break;
+
+      case (isEmpty = val === ""):
+        break;
+      case (isEmpty = MyUtils.isObject(val) && Object.keys(val).length == 0):
+        break;
+      case (isEmpty = MyUtils.isSet(val) && val.size == 0):
+      
+        break;
+      case (isEmpty = MyUtils.isMap(val) && val.size == 0):
+        break;
+    }
+   
+   return isEmpty;
   }
+  static isObject(val: any) {
+    return typeof val === "object";
+  }
+  static isSymbol(val: any) {
+    return typeof val === "symbol";
+  }
+  static isNull(val: any) {
+    return Object.prototype.toString.call(val)==='[object Null]';
+  }
+  static isMap(val: any) {
+    return val instanceof Map
+  }
+  static isSet(val: any) {
+    return val instanceof Set
+  }
+
   /**
    * converts a string to uppercase
    * @param val
