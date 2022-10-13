@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     /* Language and Environment */
-    "target": "es2016" /* Set the JavaScript language version for 
+    "target": "ES2017" /* Set the JavaScript language version for 
     /* Modules */,
-    "module": "ES2015" /* Specify what module code is generated. */,
+    "module": "CommonJS" /* Specify what module code is generated. */,
 
     /* Emit */
     "declaration": true,

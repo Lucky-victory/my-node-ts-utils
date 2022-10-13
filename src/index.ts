@@ -1,39 +1,6 @@
-import flatten from "just-flatten-it";
-import isEmpty from "just-is-empty";
-import merge from "just-merge";
-import omit from "just-omit";
-import pick from "just-pick";
-
 import { v4 as uuid } from "uuid";
 
 export class MyUtils {
-  static merge<T extends object, O extends object[], R extends object>(
-    obj: T,
-    ...objs: O
-  ): R {
-    return merge(obj, ...objs) as unknown as R;
-  }
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  static flatten<R = any>(arr: any): R[] {
-    return flatten(arr);
-  }
-  static omit<T extends object>(obj: T | T[], remove: (keyof T)[] | string[]) {
-    if (Array.isArray(obj)) {
-      return obj.map((item) => {
-        return omit(item, remove as (keyof T)[]);
-      });
-    }
-    return omit(obj, remove as (keyof T)[]);
-  }
-  static pick<T extends object>(obj: T | T[], select: (keyof T)[] | string[]) {
-    if (Array.isArray(obj)) {
-      return obj.map((item) => {
-        return pick(item as T, select as (keyof T)[]);
-      });
-    }
-    return pick(obj, select as (keyof T)[]);
-  }
-
   /**
    * converts a string to lowercase
    * @param val
@@ -43,7 +10,9 @@ export class MyUtils {
     return val && String(val).toLowerCase().trim();
   }
   static isEmpty(val: any) {
-    return isEmpty(val);
+    return (
+      val === "" || Object.keys(val)?.length === 0 || typeof val == "undefined"
+    );
   }
   /**
    * converts a string to uppercase
