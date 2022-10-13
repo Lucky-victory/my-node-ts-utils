@@ -10,25 +10,30 @@ export class MyUtils {
     return val && String(val).toLowerCase().trim();
   }
   static isEmpty(val: any) {
-    let isEmpty: boolean=true;
+    let isEmpty: boolean = true;
     switch (val) {
-      case (isEmpty = typeof val === "undefined"):
+      case typeof val === "undefined":
+        isEmpty = true;
         break;
-      case (isEmpty = MyUtils.isNull(val)):
+      case MyUtils.isNull(val):
+        isEmpty = true;
         break;
 
-      case (isEmpty = val === ""):
+      case typeof val == "string":
+        isEmpty = val === "";
         break;
-      case (isEmpty = MyUtils.isObject(val) && Object.keys(val).length == 0):
+      case MyUtils.isObject(val):
+        isEmpty = Object.keys(val).length == 0;
         break;
-      case (isEmpty = MyUtils.isSet(val) && val.size == 0):
-      
+      case MyUtils.isSet(val) || MyUtils.isMap(val):
+        isEmpty = val.size == 0;
         break;
-      case (isEmpty = MyUtils.isMap(val) && val.size == 0):
-        break;
+
+      default:
+        isEmpty = true;
     }
-   
-   return isEmpty;
+
+    return isEmpty;
   }
   static isObject(val: any) {
     return typeof val === "object";
@@ -37,13 +42,13 @@ export class MyUtils {
     return typeof val === "symbol";
   }
   static isNull(val: any) {
-    return Object.prototype.toString.call(val)==='[object Null]';
+    return Object.prototype.toString.call(val) === "[object Null]";
   }
   static isMap(val: any) {
-    return val instanceof Map
+    return val instanceof Map;
   }
   static isSet(val: any) {
-    return val instanceof Set
+    return val instanceof Set;
   }
 
   /**
