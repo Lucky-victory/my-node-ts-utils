@@ -9,41 +9,11 @@ export class MyUtils {
   static lower(val: string) {
     return val && String(val).toLowerCase().trim();
   }
-  static isEmpty(val: any) {
-    let isEmpty: boolean = true;
-    switch (val) {
-      case typeof val === "undefined":
-        isEmpty = true;
-        break;
-      case MyUtils.isNull(val):
-        isEmpty = true;
-        break;
 
-      case typeof val == "string":
-        isEmpty = val === "";
-        break;
-      case MyUtils.isObject(val):
-        isEmpty = Object.keys(val).length == 0;
-        break;
-      case MyUtils.isSet(val) || MyUtils.isMap(val):
-        isEmpty = val.size == 0;
-        break;
-
-      default:
-        isEmpty = true;
-    }
-
-    return isEmpty;
-  }
   static isObject(val: any) {
     return typeof val === "object";
   }
-  static isSymbol(val: any) {
-    return typeof val === "symbol";
-  }
-  static isNull(val: any) {
-    return Object.prototype.toString.call(val) === "[object Null]";
-  }
+
   static isMap(val: any) {
     return val instanceof Map;
   }
